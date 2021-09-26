@@ -66,9 +66,10 @@ class TodoRepository {
 
     suspend fun insertTodo(todo: Todo, isTodoInserted: (Boolean) -> Unit) =
         withContext(Dispatchers.IO) {
+            val todoExt = Todo(title = todo.title, body = todo.body)
             isLoading.post(true)
             firebaseDatabase.reference.child(TABLE_TODO).push()
-                .setValue(todo)
+                .setValue(todoExt)
                 .addOnSuccessListener {
                     isLoading.post(false)
                     isTodoInserted(true)
