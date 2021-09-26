@@ -6,15 +6,17 @@
     android:orientation="vertical"
     tools:context=".data.view.FormActivity">
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:paddingTop="80dp"
+        android:paddingTop="20dp"
         android:text="Nambah data"
+        android:textColor="@color/black"
+        android:textSize="22sp"
         android:textStyle="bold" />
 
-    <EditText
+    <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/et_title"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
@@ -23,7 +25,7 @@
         android:layout_marginTop="20dp"
         android:hint="Title" />
 
-    <EditText
+    <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/et_body"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
@@ -34,23 +36,27 @@
 
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_Save"
+        android:id="@+id/btn_save"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="40dp"
         android:layout_marginRight="20dp"
-        android:hint="Save" />
+        android:background="@color/teal_200"
+        android:hint="Save"
+        tools:ignore="HardcodedText" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_Cancel"
+        android:id="@+id/btn_cancel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="20dp"
-        android:hint="Cancel" />
+        android:background="@android:color/holo_green_light"
+        android:hint="Cancel"
+        tools:ignore="HardcodedText" />
 
 </LinearLayout>

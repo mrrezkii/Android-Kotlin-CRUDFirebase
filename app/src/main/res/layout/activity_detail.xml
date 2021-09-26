@@ -6,15 +6,17 @@
     android:orientation="vertical"
     tools:context=".data.view.FormActivity">
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:paddingTop="80dp"
-        android:text="detail"
+        android:paddingTop="20dp"
+        android:text="Detail data"
+        android:textColor="@color/black"
+        android:textSize="22sp"
         android:textStyle="bold" />
 
-    <EditText
+    <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/et_title"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
@@ -23,7 +25,7 @@
         android:layout_marginTop="20dp"
         android:hint="Title" />
 
-    <EditText
+    <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/et_body"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
@@ -34,33 +36,39 @@
 
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_Update"
+        android:id="@+id/btn_update"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="40dp"
         android:layout_marginRight="20dp"
-        android:hint="Update" />
+        android:background="@color/teal_200"
+        android:hint="Update"
+        tools:ignore="HardcodedText" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_Delete"
+        android:id="@+id/btn_delete"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="40dp"
         android:layout_marginRight="20dp"
-        android:hint="Delete" />
+        android:background="@android:color/holo_red_light"
+        android:hint="Delete"
+        tools:ignore="HardcodedText" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_Cancel"
+        android:id="@+id/btn_cancel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="20dp"
-        android:hint="Cancel" />
+        android:background="@android:color/holo_green_light"
+        android:hint="Cancel"
+        tools:ignore="HardcodedText" />
 
 </LinearLayout>
