@@ -1,10 +1,10 @@
 package id.ac.telkomuniversity.mrrezki.data.view
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import id.ac.telkomuniversity.mrrezki.data.model.Todo
+import id.ac.telkomuniversity.mrrezki.data.view.adapter.TodoAdapter
 import id.ac.telkomuniversity.mrrezki.data.viewmodel.TodoViewModel
 import id.ac.telkomuniversity.mrrezki.data.viewmodel.factory.TodoViewModelFactory
 import id.ac.telkomuniversity.mrrezki.databinding.ActivityMainBinding
@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity(), KodeinAware {
     private lateinit var viewModel: TodoViewModel
 
     private val binding: ActivityMainBinding by lazy { ActivityMainBinding.inflate(layoutInflater) }
+    private lateinit var adapter: TodoAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,11 +33,8 @@ class MainActivity : AppCompatActivity(), KodeinAware {
     }
 
     private fun setupView() {
-        binding.tvHello.setOnClickListener {
-            val intent = Intent(this, DetailActivity::class.java)
-            intent.putExtra("data", binding.tvHello.text)
-            startActivity(intent)
-        }
+        adapter = TodoAdapter(arrayListOf())
+        binding.listTodo.adapter = adapter
     }
 
 
@@ -52,7 +50,7 @@ class MainActivity : AppCompatActivity(), KodeinAware {
     private fun setupObserve() {
         observe(viewModel.todos) {
             Timber.e("$it")
-            binding.tvHello.text = it[0].key
+            adapter.setData(it)
         }
         observe(viewModel.message) { message ->
             showToast(message)
