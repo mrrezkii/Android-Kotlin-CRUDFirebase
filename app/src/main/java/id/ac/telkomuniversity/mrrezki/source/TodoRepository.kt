@@ -80,5 +80,23 @@ class TodoRepository {
                 }
         }
 
+    suspend fun updateTodo(todo: Todo, isTodoUpdated: (Boolean) -> Unit) =
+        withContext(Dispatchers.IO) {
+            isLoading.post(true)
+            todo.key?.let { key ->
+                firebaseDatabase.reference.child(TABLE_TODO).child(key)
+                    .setValue(todo)
+                    .addOnSuccessListener {
+                        isLoading.post(true)
+                        isTodoUpdated(true)
+                    }
+                    .addOnFailureListener {
+                        isLoading.post(true)
+                        isTodoUpdated(false)
+                        message.post("$it")
+                    }
+            }
+        }
+
 
 }
