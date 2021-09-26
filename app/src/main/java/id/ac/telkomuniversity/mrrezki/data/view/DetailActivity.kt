@@ -3,13 +3,15 @@ package id.ac.telkomuniversity.mrrezki.data.view
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import id.ac.telkomuniversity.mrrezki.data.model.Todo
 import id.ac.telkomuniversity.mrrezki.data.viewmodel.TodoViewModel
 import id.ac.telkomuniversity.mrrezki.data.viewmodel.factory.TodoViewModelFactory
 import id.ac.telkomuniversity.mrrezki.databinding.ActivityDetailBinding
+import id.ac.telkomuniversity.mrrezki.utils.showToast
+import id.ac.telkomuniversity.mrrezki.utils.toEditable
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
 import org.kodein.di.generic.instance
-import timber.log.Timber
 
 class DetailActivity : AppCompatActivity(), KodeinAware {
 
@@ -34,13 +36,34 @@ class DetailActivity : AppCompatActivity(), KodeinAware {
     }
 
     private fun setupView() {
-        Timber.e("$key")
-        Timber.e("$title")
-        Timber.e("$body")
+        binding.etTitle.text = title!!.toEditable()
+        binding.etBody.text = body!!.toEditable()
+
+        when {
+            binding.etTitle.text.isNullOrBlank() -> {
+                showToast("Fill title")
+            }
+            binding.etBody.text.isNullOrBlank() -> {
+                showToast("Fill body")
+            }
+            else -> {
+                binding.btnUpdate.setOnClickListener {
+                    viewModel.todo = Todo(
+                        key = key,
+                        title = binding.etTitle.text.toString(),
+                        body = binding.etBody.text.toString()
+                    )
+
+                    viewModel.updateTodo()
+                    showToast("Data has been updated")
+                    finish()
+                }
+            }
+        }
+
     }
 
     private fun setupViewModel() {
         viewModel = ViewModelProvider(this, viewModeFactory).get(TodoViewModel::class.java)
-
     }
 }
