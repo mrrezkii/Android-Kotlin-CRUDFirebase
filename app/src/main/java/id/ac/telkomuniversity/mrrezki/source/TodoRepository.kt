@@ -98,5 +98,21 @@ class TodoRepository {
             }
         }
 
+    suspend fun deleteTodo(key: String, isTodoDeleted: (Boolean) -> Unit) =
+        withContext(Dispatchers.IO) {
+            isLoading.post(true)
+
+            firebaseDatabase.reference.child(TABLE_TODO).child(key)
+                .removeValue()
+                .addOnSuccessListener {
+                    isLoading.post(false)
+                    isTodoDeleted(true)
+                }
+                .addOnFailureListener {
+                    isLoading.post(false)
+                    isTodoDeleted(false)
+                    message.post("$it")
+                }
+        }
 
 }
