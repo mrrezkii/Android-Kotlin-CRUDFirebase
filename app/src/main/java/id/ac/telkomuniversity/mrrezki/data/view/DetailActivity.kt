@@ -6,10 +6,10 @@ import androidx.lifecycle.ViewModelProvider
 import id.ac.telkomuniversity.mrrezki.data.viewmodel.TodoViewModel
 import id.ac.telkomuniversity.mrrezki.data.viewmodel.factory.TodoViewModelFactory
 import id.ac.telkomuniversity.mrrezki.databinding.ActivityDetailBinding
-import id.ac.telkomuniversity.mrrezki.utils.showToast
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
 import org.kodein.di.generic.instance
+import timber.log.Timber
 
 class DetailActivity : AppCompatActivity(), KodeinAware {
 
@@ -22,7 +22,9 @@ class DetailActivity : AppCompatActivity(), KodeinAware {
             layoutInflater
         )
     }
-    private val data by lazy { intent.getStringExtra("data") }
+    private val key by lazy { intent.getStringExtra("key") }
+    private val title by lazy { intent.getStringExtra("title") }
+    private val body by lazy { intent.getStringExtra("body") }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +34,9 @@ class DetailActivity : AppCompatActivity(), KodeinAware {
     }
 
     private fun setupView() {
-        showToast(data.toString())
+        Timber.e("$key")
+        Timber.e("$title")
+        Timber.e("$body")
     }
 
     private fun setupViewModel() {
