@@ -27,7 +27,7 @@ class TodoViewModel(
         repository.getTodo()
     }
 
-    fun insertTPDP() = CoroutineScope(Dispatchers.IO).launch {
+    fun insertTodo() = CoroutineScope(Dispatchers.IO).launch {
         todo?.let {
             repository.insertTodo(it) { isSuccess ->
                 isTodoInserted.post(isSuccess)

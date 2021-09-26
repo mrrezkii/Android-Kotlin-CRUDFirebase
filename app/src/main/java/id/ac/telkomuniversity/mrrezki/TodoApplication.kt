@@ -1,6 +1,7 @@
 package id.ac.telkomuniversity.mrrezki
 
 import android.app.Application
+import androidx.appcompat.app.AppCompatDelegate
 import id.ac.telkomuniversity.mrrezki.data.viewmodel.factory.TodoViewModelFactory
 import id.ac.telkomuniversity.mrrezki.source.TodoRepository
 import org.kodein.di.Kodein
@@ -23,6 +24,7 @@ class TodoApplication : Application(), KodeinAware {
 
     override fun onCreate() {
         super.onCreate()
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         Timber.plant(Timber.DebugTree())
         Timber.e("RUN BASE APPLICATION")
     }
