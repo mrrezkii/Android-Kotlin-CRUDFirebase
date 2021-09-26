@@ -1,9 +1,9 @@
 package id.ac.telkomuniversity.mrrezki.data.view
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import id.ac.telkomuniversity.mrrezki.data.model.Todo
 import id.ac.telkomuniversity.mrrezki.data.view.adapter.TodoAdapter
 import id.ac.telkomuniversity.mrrezki.data.viewmodel.TodoViewModel
 import id.ac.telkomuniversity.mrrezki.data.viewmodel.factory.TodoViewModelFactory
@@ -35,6 +35,10 @@ class MainActivity : AppCompatActivity(), KodeinAware {
     private fun setupView() {
         adapter = TodoAdapter(arrayListOf())
         binding.listTodo.adapter = adapter
+
+        binding.fab.setOnClickListener {
+            startActivity(Intent(this, FormActivity::class.java))
+        }
     }
 
 
@@ -57,15 +61,4 @@ class MainActivity : AppCompatActivity(), KodeinAware {
         }
     }
 
-
-    private fun createSampleTodo() {
-        viewModel.todo = Todo(title = "Dummy title", body = "Dummy body")
-
-        if (viewModel.todo?.key.isNullOrBlank()) {
-            viewModel.insertTodo()
-        } else {
-            viewModel.updateTodo()
-        }
-        Timber.e("${viewModel.todo}")
-    }
 }
