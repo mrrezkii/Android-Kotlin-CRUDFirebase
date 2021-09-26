@@ -53,6 +53,7 @@ class TodoRepository {
                     todo.body = dataSnapshot.child("body").value.toString()
                     todoResult.add(
                         Todo(
+                            key = todo.key,
                             title = todo.title,
                             body = todo.body
                         )

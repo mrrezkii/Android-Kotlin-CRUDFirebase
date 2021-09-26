@@ -11,6 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CRUDUsingMVVM">
         <activity
+            android:name=".data.view.DetailActivity"
+            android:exported="true" />
+        <activity
             android:name=".data.view.MainActivity"
             android:exported="true">
             <intent-filter>

@@ -1,5 +1,6 @@
 package id.ac.telkomuniversity.mrrezki.data.view
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -32,7 +33,9 @@ class MainActivity : AppCompatActivity(), KodeinAware {
 
     private fun setupView() {
         binding.tvHello.setOnClickListener {
-            createSampleTodo()
+            val intent = Intent(this, DetailActivity::class.java)
+            intent.putExtra("data", binding.tvHello.text)
+            startActivity(intent)
         }
     }
 
@@ -49,6 +52,7 @@ class MainActivity : AppCompatActivity(), KodeinAware {
     private fun setupObserve() {
         observe(viewModel.todos) {
             Timber.e("$it")
+            binding.tvHello.text = it[0].key
         }
         observe(viewModel.message) { message ->
             showToast(message)
