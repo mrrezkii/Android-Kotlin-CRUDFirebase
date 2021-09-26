@@ -39,15 +39,15 @@ class DetailActivity : AppCompatActivity(), KodeinAware {
         binding.etTitle.text = title!!.toEditable()
         binding.etBody.text = body!!.toEditable()
 
-        when {
-            binding.etTitle.text.isNullOrBlank() -> {
-                showToast("Fill title")
-            }
-            binding.etBody.text.isNullOrBlank() -> {
-                showToast("Fill body")
-            }
-            else -> {
-                binding.btnUpdate.setOnClickListener {
+        binding.btnUpdate.setOnClickListener {
+            when {
+                binding.etTitle.text.isNullOrBlank() -> {
+                    showToast("Fill title")
+                }
+                binding.etBody.text.isNullOrBlank() -> {
+                    showToast("Fill body")
+                }
+                else -> {
                     viewModel.todo = Todo(
                         key = key,
                         title = binding.etTitle.text.toString(),
@@ -59,6 +59,30 @@ class DetailActivity : AppCompatActivity(), KodeinAware {
                     finish()
                 }
             }
+        }
+        binding.btnDelete.setOnClickListener {
+            when {
+                binding.etTitle.text.isNullOrBlank() -> {
+                    showToast("Fill title")
+                }
+                binding.etBody.text.isNullOrBlank() -> {
+                    showToast("Fill body")
+                }
+                else -> {
+                    viewModel.todo = Todo(
+                        key = key,
+                        title = binding.etTitle.text.toString(),
+                        body = binding.etBody.text.toString()
+                    )
+
+                    viewModel.deleteNote()
+                    showToast("Data has been deleted")
+                    finish()
+                }
+            }
+        }
+        binding.btnCancel.setOnClickListener {
+            finish()
         }
 
     }
